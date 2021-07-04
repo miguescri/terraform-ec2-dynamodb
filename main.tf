@@ -47,6 +47,7 @@ resource "aws_instance" "app_server" {
   ami = "ami-0b66abce162eb2baf"
   instance_type = "t2.micro"
   iam_instance_profile = aws_iam_instance_profile.instance_profile.name
+  user_data = "echo 'DYNAMODB_TABLE_ARN=${aws_dynamodb_table.db_table.arn}' >> /etc/environment"
 }
 
 // https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
